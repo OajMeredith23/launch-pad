@@ -1,6 +1,8 @@
-{% include head.html %}
+{% include statics/head.html %}
 <body>
-{{ content }}    
-    
-{% include footer.html %}
+    <main class="main">
+        {{ content }}  
+    </main>
+    {% include statics/footer.html %}
+    <script src="js/main.js"></script>
 </body>

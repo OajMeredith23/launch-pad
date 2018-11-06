@@ -1,6 +1,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
+var csso        = require('gulp-csso');
 var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
 var pug         = require('gulp-pug');
@@ -41,11 +42,19 @@ gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
     });
 });
 
+// Minifi CSS
+
+gulp.task('csso', function(){
+    return gulp.src('_site/css/*')
+       .pipe(csso())
+       .pipe(gulp.dest('_site/css'))
+})
+
 /**
- * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
+ * Compile files from _sass into both _site/css (for live injecting) and site (for future jekyll builds)
  */
 gulp.task('sass', function () {
-    return gulp.src('0_working/1_scss/main.scss')
+    return gulp.src('0_working/1_sass/main.scss')
         .pipe(sass({
             includePaths: ['scss'],
             onError: browserSync.notify
@@ -54,14 +63,16 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('_site/css'))
         .pipe(browserSync.reload({stream:true}))
         .pipe(gulp.dest('1_src/css'));
+        //csso()
 });
+
 
 /** 
  *  Get and compile pug files into HTML
  */
 
  gulp.task('pug', function(){
-     return gulp.src('0_working/0_pugFiles/*.pug')
+     return gulp.src('0_working/0_pugFiles/**/*.pug')
      .pipe(pug())
      .pipe(gulp.dest('1_src/_includes'))
  });
@@ -81,9 +92,10 @@ gulp.task('babel', function(){
  * Watch html/md files, run jekyll & reload BrowserSync
  */
 gulp.task('watch', function () {
-    gulp.watch('0_working/1_scss/*', ['sass']);
-    gulp.watch(['1_src/*.html', '1_src/_layouts/*.html', '1_src/_posts/*', '1_src/_includes/*', 'assets/js/*'], ['jekyll-rebuild']);
-    gulp.watch('0_working/0_pugFiles/*.pug', ['pug']);
+    gulp.watch('0_working/1_sass/**/*', ['sass']);
+    gulp.watch('_site/css/*', ['csso']);
+    gulp.watch(['1_src/*.html', '1_src/_layouts/*.html', '1_src/_posts/*', '1_src/_includes/*', 'assets/js/*', '_config.yml'], ['jekyll-rebuild']);
+    gulp.watch('0_working/0_pugFiles/**/*.pug', ['pug']);
     gulp.watch('0_working/2_js/*.js', ['babel']);
 });
 
