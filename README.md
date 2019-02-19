@@ -72,9 +72,9 @@ Only edit styles in _sass folder, the CSS folder is the outputted code. It's the
       - **assets/**
       -  **css/**
           - main.css
-       - **js/**
+      - **js/**
           - main.js
-       - index.html
+      - index.html
 ### Don't touch this
 - **_site/**  
    - **css/** 
