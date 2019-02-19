@@ -5,7 +5,6 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-@import url("https://fonts.googleapis.com/css?family=Lato:400,900");
 html {
   line-height: 1.15;
   /* 1 */
@@ -304,36 +303,14 @@ template {
 [hidden] {
   display: none; }
 
+h1, h2, p {
+  font-family: Helvetica, sans-serif;
+  color: white;
+  font-weight: 700; }
+
 body {
-  font-size: 100%; }
-
-h1, h2, h3, h4, h5, h6, p, a {
-  color: #666;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  font-family: lato, helvetica, sans-serif; }
-
-h1 {
-  font-weight: 900;
-  font-size: 3em; }
-
-h2 {
-  font: 400 1.5em lato; }
-  h2 span {
-    font-style: italic;
-    opacity: .5;
-    margin-right: .3em; }
-
-.test {
-  font-size: 3em;
-  border-bottom: 5px solid black; }
-
-.main {
-  width: 100%;
+  background: #333;
   height: 100vh;
-  margin: 0;
-  border: 15px solid #f90099;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -341,19 +318,15 @@ h2 {
   -ms-flex-align: center;
       align-items: center; }
 
-.footer {
-  height: 50px;
-  background: #f90099;
-  padding: 1em;
-  width: 100%; }
-  .footer p, .footer a {
-    color: whitesmoke; }
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  color: white; }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; }
-
-body {
-  background: #222;
-  width: 100%; }
+a {
+  text-decoration: none; }

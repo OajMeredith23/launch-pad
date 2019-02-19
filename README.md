@@ -1,52 +1,100 @@
-jekyll-gulp-sass-browser-sync
-=============================
+# launch-pad
 
-A starter project including full setup for Jekyll, GulpJS, SASS, AutoPrefixer &amp; BrowserSync
+  
 
-Here's a 1.5min [screencast](http://quick.as/pvrslgx) showing what you get.
+A front-end development starter kit, bringing Jekyll, SASS, BrowserSynch, Babel and CSSO together in 1 gulp build task.
 
-And here's a GIF showing the CSS injecting.
+This is strongly based on [ShakyShanes'](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync) starter kit, any similarities are **not** a coincidence and credit for those areas where these environments are similar goes to him.
 
-![GIF](http://f.cl.ly/items/373y2E0e0i2p0E2O131g/test-gif.gif)
+  
+  
 
 ## System Preparation
 
-To use this starter project, you'll need the following things installed on your machine.
+  
 
-1. [Jekyll](http://jekyllrb.com/) - `$ gem install jekyll`
-2. [NodeJS](http://nodejs.org) - use the installer.
-3. [GulpJS](https://github.com/gulpjs/gulp) - `$ npm install -g gulp` (mac users may need sudo)
+You'll need this stuff installed to use this kit
 
-## Local Installation
+  
+
+1.  [Jekyll](http://jekyllrb.com/)
+
+2.  [NodeJS](http://nodejs.org)
+
+3.  [GulpJS](https://github.com/gulpjs/gulp)
+
+  
+
+## Installation
+
+  
 
 1. Clone this repo, or download it into a directory of your choice.
+
 2. Inside the directory, run `npm install`.
+
+  
 
 ## Usage
 
-**development mode**
+### Development mode
 
 This will give you file watching, browser synchronisation, auto-rebuild, CSS injecting etc etc.
 
+Simply navigate to your project directory in the terminal and run 'gulp' after installing the required dependencies.
+
+  
+
 ```shell
+
 $ gulp
+
 ```
 
-**jekyll**
+  
 
-As this is just a Jekyll project, you can use any of the commands listed in their [docs](http://jekyllrb.com/docs/usage/)
+## File Structure
 
-## Deploy with Gulp
+### Build your project here
+_DO NOT EDIT CSS FOLDER_ 
+Only edit styles in _sass folder, the CSS folder is the outputted code. It's there for Jekyll's build process and to smooth CSS injection.
+ - **_build** 
+     - **_includes/**
+        - **statics/** 
+           - head.html
+           - footer.html
+     - **_layouts/**
+        - default.html
+     - **_sass/**
+          - **0_reset/** 
+              - normalize.scss
+          - main.sass
+      -  **css/**
+          - main.css
+       - **js/**
+          - main.js
+       - index.html
+### Don't touch this
+- **_site/**  
+   - **css/** 
+      - main.css  
+   - **js/** 
+      - main.js
+   - index.html
+### Edit these if you know what you're doing
+- _config.yml 
+- .babelrc
+- .gitignore 
+- gulpfile.json 
+- package.json
+- package-lock.json
 
-You can easily deploy your site build to a gh-pages branch. First, follow the instructions at [gulp-gh-pages](https://github.com/rowoot/gulp-gh-pages) to get your branch prepared for the deployment and to install the module. Then, in `gulpfile.js` you'll want to include something like the code below. `gulp.src()` needs to be the path to your final site folder, which by default will be `_site`. If you change the `destination` in your `_config.yml` file, be sure to reflect that in your gulpfile.
+    
 
+  
+  
 
+**Jekyll**
 
-```javascript
-var deploy = require("gulp-gh-pages");
+The project is compiled into the _site folder with Jekyll, therefore you can use all the functionality Jekyll offers in their [docs](http://jekyllrb.com/docs/usage/)
 
-gulp.task("deploy", ["jekyll-build"], function () {
-    return gulp.src("./_site/**/*")
-        .pipe(deploy());
-});
-```

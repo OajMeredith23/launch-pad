@@ -1,4 +1,4 @@
-source: ./1_src
+source: _build
 
 title: \[launch-pad\]
 description: This is a web development starter kit
@@ -6,4 +6,4 @@ link: http://www.olivermeredith.com
 
 markdown: redcarpet
 highlighter: pygments # or rouge or null
-exclude: ["node_modules", "gulpfile.js", "package.json"]
+exclude: ["node_modules", "gulpfile.js", "package.json", "package-lock.json", "README.md"]
