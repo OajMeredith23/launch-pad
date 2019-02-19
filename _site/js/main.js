@@ -1,4 +1,3 @@
-"use strict";
+const babel = 'launch-pad';
 
-var babel = 'launch-pad';
-console.log("welcome to ".concat(babel));
+console.log(`welcome to ${babel}`)

@@ -1,8 +1,7 @@
 source: _build
 
-title: \[launch-pad\]
+title: Mental Wellness
 description: This is a web development starter kit
-link: http://www.olivermeredith.com
 
 markdown: redcarpet
 highlighter: pygments # or rouge or null
