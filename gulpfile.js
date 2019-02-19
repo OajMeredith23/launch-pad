@@ -53,7 +53,7 @@ gulp.task('csso', function(){
  * Compile files from _sass into both _site/css (for live injecting) and site (for future jekyll builds)
  */
 
- const sassPath = `${buildLocation}/_sass/main.sass`;
+ const sassPath = `${buildLocation}/_sass/**/*.sass`;
 gulp.task('sass', function () {
     return gulp.src(sassPath)
         .pipe(sass({
