@@ -87,7 +87,6 @@ Only edit styles in _sass folder, the CSS folder is the outputted code. It's the
 - .gitignore 
 - gulpfile.json 
 - package.json
-- package-lock.json
 
     
 
