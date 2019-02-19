@@ -2,7 +2,7 @@
 
   
 
-A front-end development starter kit, bringing Jekyll, SASS, BrowserSynch, Babel and CSSO together in 1 gulp build task.
+A front-end development starter kit, bringing Jekyll, SASS, BrowserSync, Babel, imagemin and CSSO together in 1 gulp build task.
 
 This is strongly based on [ShakyShanes'](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync) starter kit, any similarities are **not** a coincidence and credit for those areas where these environments are similar goes to him.
 
@@ -69,6 +69,7 @@ Only edit styles in _sass folder, the CSS folder is the outputted code. It's the
           - **0_reset/** 
               - normalize.scss
           - main.sass
+      - **assets/**
       -  **css/**
           - main.css
        - **js/**
