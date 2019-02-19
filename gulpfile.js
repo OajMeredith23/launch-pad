@@ -7,6 +7,8 @@ var csso        = require('gulp-csso');
 var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
 var babel       = require('gulp-babel');
+const imagemin = require('gulp-imagemin');
+ 
 
 var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 var messages = {
@@ -50,8 +52,10 @@ gulp.task('csso', function(){
 /**
  * Compile files from _sass into both _site/css (for live injecting) and site (for future jekyll builds)
  */
+
+ const sassPath = `${buildLocation}/_sass/main.sass`;
 gulp.task('sass', function () {
-    return gulp.src(`${buildLocation}/_sass/main.sass`)
+    return gulp.src(sassPath)
         .pipe(sass({
             includePaths: ['scss'],
             onError: browserSync.notify
@@ -67,22 +71,33 @@ gulp.task('sass', function () {
 
 //  Babelize JS
 
+const JSPath = `${buildLocation}/js/*.js`;
 gulp.task('babel', function(){
-    return gulp.src(`${buildLocation}/js/*.js`)
+    return gulp.src(JSPath)
     .pipe(babel())
     .pipe(gulp.dest('_site/js'))
     .pipe(browserSync.reload({stream:true}))
     // .pipe(gulp.dest('work/js'))
 })
+
+// imagemin
+const imageminPath = `${buildLocation}/assets/**/*`;
+
+gulp.task('imagemin', () =>
+    gulp.src(imageminPath)
+        .pipe(imagemin())
+        .pipe(gulp.dest('_site/assets'))
+);
 /**
  * Watch scss files for changes & recompile
  * Watch html/md files, run jekyll & reload BrowserSync
  */
 gulp.task('watch', function () {
-    gulp.watch(`${buildLocation}/_sass/**/*`, ['sass']);
+    gulp.watch(sassPath, ['sass']);
     gulp.watch('_site/css/*', ['csso']);
-    gulp.watch([`${buildLocation}/*.html`, `${buildLocation}/_layouts/*.html`, `${buildLocation}/_posts/*`, `${buildLocation}/_includes/*.html`, `${buildLocation}/assets/**/*`, '_config.yml'], ['jekyll-rebuild']);
-    gulp.watch(`${buildLocation}/js/*.js`, ['babel']);
+    gulp.watch(imageminPath, ['imagemin']);
+    gulp.watch([`${buildLocation}/*.html`, `${buildLocation}/_layouts/*.html`, `${buildLocation}/_posts/*`, `${buildLocation}/_includes/*.html`, '_config.yml'], ['jekyll-rebuild']);
+    gulp.watch(JSPath, ['babel']);
 });
 
 /**
