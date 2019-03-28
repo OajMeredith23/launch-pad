@@ -1,4 +1,4 @@
-const buildLocation = '_build';
+const buildLocation = '.';
 
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
